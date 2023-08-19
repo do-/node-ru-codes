@@ -24,6 +24,12 @@
     "type": "git",
     "url": "git+https://github.com/do-/node-ru-codes.git"
   },
+  "keywords": [
+    "ИНН",
+    "КПП",
+    "ОГРН",
+    "СНИЛС"
+  ],
   "author": "Dmitry Ovsyanko",
   "license": "MIT",
   "bugs": {
