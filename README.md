@@ -1,3 +1,6 @@
+![workflow](https://github.com/do-/node-ru-codes/actions/workflows/main.yml/badge.svg)
+![Jest coverage](./badges/coverage-jest%20coverage.svg)
+
 [ru-codes](https://github.com/do-/node-ru-codes) - один из модулей node.js для проверки корректности ввода ИНН, КПП, ОГРН[ИП] и СНИЛС.
 
 Особенности:

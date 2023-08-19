@@ -108,7 +108,7 @@ module.exports = {
 	
 			const tobe = scalarProduct (COEF_INN_12_2, str) % 11 % 10, asis = digit (str, 11)
 
-			if (tobe !== asis) die ('Wrong checksum', {code: 'checksum', tobe, asis, phase: 1})
+			if (tobe !== asis) die ('Wrong checksum', {code: 'checksum', tobe, asis, phase: 2})
 		
 		}
 		
