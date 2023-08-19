@@ -1,0 +1,36 @@
+{
+  "name": "ru-codes",
+  "version": "1.0.0",
+  "description": "ИНН, КПП и т. п.",
+  "main": "index.js",
+  "files": ["/lib", "/badges"],
+  "scripts": {
+    "test": "jest",
+    "test-ci": "jest --ci --coverage"
+  },
+  "jest": {
+	"collectCoverageFrom": [
+		"index.js"
+	],
+	"coverageReporters": ["clover", "json", "lcov", "text", "json-summary"],
+  	"verbose": false,
+  	"testPathIgnorePatterns": [
+  		"/node_modules/",
+  		"/__tests__/data",
+  		"/__tests__/lib"
+  	]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/do-/node-ru-codes.git"
+  },
+  "author": "Dmitry Ovsyanko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/do-/node-ru-codes/issues"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
+  },
+  "homepage": "https://github.com/do-/node-ru-codes#readme"
+}
