@@ -83,22 +83,20 @@ const randomString = length => {
 
 }
 
+const random1011 = COEF => {
+
+	const
+		length = COEF.length - 1,
+		no = randomString (length)
+
+	return no + scalarProduct (COEF.slice (0, length), no) % 11 % 10
+
+}
+
 module.exports = {
 
 	digit,
 	scalarProduct,
-
-	randomSNILS: (options = {}) => {
-
-		const 
-			length = COEF_SNILS.length - 2, 
-			no = randomString (length),
-			sum = scalarProduct (COEF_SNILS.slice (0, length), no) % 101 % 100
-			result = sum < 10 ? no + '0' + sum : no + sum
-
-		return !options.format ? result : result.slice (0, 3) + '-' + result.slice (3, 6) + '-' + result.slice (6, 9) + ' ' + result.slice (9)
-
-	},
 
 	isSNILS: str => {
 
@@ -126,15 +124,6 @@ module.exports = {
 		
 	},
 
-	randomINN10: () => {
-
-		const
-			length = COEF_INN_10.length - 1,
-			no = randomString (length)
-
-		return no + scalarProduct (COEF_INN_10.slice (0, length), no) % 11 % 10
-
-	},
 
 	isINN12: str => {
 	
@@ -156,16 +145,6 @@ module.exports = {
 		
 	},
 
-	randomOGRN13: () => {
-
-		const
-			length = COEF_OGRN_13.length - 1,
-			no = randomString (length)
-
-		return no + scalarProduct (COEF_OGRN_13.slice (0, length), no) % 11 % 10
-
-	},
-
 	isOGRN13: str => {
 	
 		const tobe = scalarProduct (COEF_OGRN_13, str) % 11 % 10, asis = digit (str, 12)
@@ -174,15 +153,6 @@ module.exports = {
 		
 	},
 
-	randomOGRN15: () => {
-
-		const
-			length = COEF_OGRN_15.length - 1,
-			no = randomString (length)
-
-		return no + scalarProduct (COEF_OGRN_15.slice (0, length), no) % 11 % 10
-
-	},
 
 	isOGRN15: str => {
 	
@@ -202,6 +172,22 @@ module.exports = {
 	
 		scalarProduct (COEF_KPP, str)
 		
+	},
+
+	randomINN10:  () => random1011 (COEF_INN_10),
+	randomOGRN13: () => random1011 (COEF_OGRN_13),
+	randomOGRN15: () => random1011 (COEF_OGRN_15),
+		
+	randomSNILS: (options = {}) => {
+
+		const 
+			length = COEF_SNILS.length - 2, 
+			no = randomString (length),
+			sum = scalarProduct (COEF_SNILS.slice (0, length), no) % 101 % 100
+			result = sum < 10 ? no + '0' + sum : no + sum
+
+		return !options.format ? result : result.slice (0, 3) + '-' + result.slice (3, 6) + '-' + result.slice (6, 9) + ' ' + result.slice (9)
+
 	},
 
 }
