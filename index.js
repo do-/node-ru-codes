@@ -83,6 +83,14 @@ const randomString = length => {
 
 }
 
+const is1011 = (str, COEF) => {
+	
+	const tobe = scalarProduct (COEF, str) % 11 % 10, asis = digit (str, COEF.length - 1)
+	
+	if (tobe !== asis) die ('Wrong checksum', {code: 'checksum', tobe, asis})
+	
+}
+
 const random1011 = COEF => {
 
 	const
@@ -97,33 +105,6 @@ module.exports = {
 
 	digit,
 	scalarProduct,
-
-	isSNILS: str => {
-
-		if (str.length === 14) {
-
-			if (str.charCodeAt (3)  !== 45) die ('Wrong format', {code: 'format', pos: 3})
-			if (str.charCodeAt (7)  !== 45) die ('Wrong format', {code: 'format', pos: 7})
-			if (str.charCodeAt (11) !== 32) die ('Wrong format', {code: 'format', pos: 11})
-
-			str = str.slice (0, 3) + str.slice (4, 7) + str.slice (8, 11) + str.slice (12)
-
-		}
-	
-		const tobe = scalarProduct (COEF_SNILS, str) % 101 % 100, asis = 10 * digit (str, 9) + digit (str, 10)
-		
-		if (tobe !== asis) die ('Wrong checksum', {code: 'checksum', tobe, asis})
-		
-	},
-	
-	isINN10: str => {
-	
-		const tobe = scalarProduct (COEF_INN_10, str) % 11 % 10, asis = digit (str, 9)
-		
-		if (tobe !== asis) die ('Wrong checksum', {code: 'checksum', tobe, asis})
-		
-	},
-
 
 	isINN12: str => {
 	
@@ -145,39 +126,36 @@ module.exports = {
 		
 	},
 
-	isOGRN13: str => {
-	
-		const tobe = scalarProduct (COEF_OGRN_13, str) % 11 % 10, asis = digit (str, 12)
-		
-		if (tobe !== asis) die ('Wrong checksum', {code: 'checksum', tobe, asis})
-		
-	},
+	isKPP:     str => {scalarProduct (COEF_KPP, str)},
+	randomKPP: ()  => randomString (COEF_KPP.length),
 
-
-	isOGRN15: str => {
-	
-		const tobe = scalarProduct (COEF_OGRN_15, str) % 11 % 10, asis = digit (str, 14)
-		
-		if (tobe !== asis) die ('Wrong checksum', {code: 'checksum', tobe, asis})
-		
-	},
-
-	randomKPP: () => {
-
-		return randomString (COEF_KPP.length)
-
-	},
-
-	isKPP: str => {
-	
-		scalarProduct (COEF_KPP, str)
-		
-	},
-
+	isINN10:   str => is1011 (str, COEF_INN_10),
 	randomINN10:  () => random1011 (COEF_INN_10),
+
+	isOGRN13:  str => is1011 (str, COEF_OGRN_13),
 	randomOGRN13: () => random1011 (COEF_OGRN_13),
+
+	isOGRN15:  str => is1011 (str, COEF_OGRN_15),
 	randomOGRN15: () => random1011 (COEF_OGRN_15),
 		
+	isSNILS: str => {
+
+		if (str.length === 14) {
+
+			if (str.charCodeAt (3)  !== 45) die ('Wrong format', {code: 'format', pos: 3})
+			if (str.charCodeAt (7)  !== 45) die ('Wrong format', {code: 'format', pos: 7})
+			if (str.charCodeAt (11) !== 32) die ('Wrong format', {code: 'format', pos: 11})
+
+			str = str.slice (0, 3) + str.slice (4, 7) + str.slice (8, 11) + str.slice (12)
+
+		}
+	
+		const tobe = scalarProduct (COEF_SNILS, str) % 101 % 100, asis = 10 * digit (str, 9) + digit (str, 10)
+		
+		if (tobe !== asis) die ('Wrong checksum', {code: 'checksum', tobe, asis})
+		
+	},
+
 	randomSNILS: (options = {}) => {
 
 		const 
