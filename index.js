@@ -73,18 +73,40 @@ const scalarProduct = (coef, str) => {
 
 }
 
+const randomString = length => {
+
+	const b = Buffer.alloc (length)
+
+	for (let i = 0; i < length; i ++) b [i] = 48 + Math.floor (10 * Math.random ())
+
+	return b.toString ()
+
+}
+
 module.exports = {
 
 	digit,
 	scalarProduct,
 
+	randomSNILS: (options = {}) => {
+
+		let result = randomString (9)
+
+		result += scalarProduct (COEF_SNILS.slice (0, 9), result) % 101 % 100
+
+		if (options.format) result = result.slice (0, 3) + '-' + result.slice (3, 6) + '-' + result.slice (6, 9) + ' ' + result.slice (9)
+
+		return result
+
+	},
+
 	isSNILS: str => {
 
 		if (str.length === 14) {
 
-			if (str.charCodeAt (3)  !== 45) die ('Wrong format', {pos: 3})
-			if (str.charCodeAt (7)  !== 45) die ('Wrong format', {pos: 7})
-			if (str.charCodeAt (11) !== 32) die ('Wrong format', {pos: 11})
+			if (str.charCodeAt (3)  !== 45) die ('Wrong format', {code: 'format', pos: 3})
+			if (str.charCodeAt (7)  !== 45) die ('Wrong format', {code: 'format', pos: 7})
+			if (str.charCodeAt (11) !== 32) die ('Wrong format', {code: 'format', pos: 11})
 
 			str = str.slice (0, 3) + str.slice (4, 7) + str.slice (8, 11) + str.slice (12)
 
