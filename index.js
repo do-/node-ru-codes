@@ -79,6 +79,16 @@ module.exports = {
 	scalarProduct,
 
 	isSNILS: str => {
+
+		if (str.length === 14) {
+
+			if (str.charCodeAt (3)  !== 45) die ('Wrong format', {pos: 3})
+			if (str.charCodeAt (7)  !== 45) die ('Wrong format', {pos: 7})
+			if (str.charCodeAt (11) !== 32) die ('Wrong format', {pos: 11})
+
+			str = str.slice (0, 3) + str.slice (4, 7) + str.slice (8, 11) + str.slice (12)
+
+		}
 	
 		const tobe = scalarProduct (COEF_SNILS, str) % 101 % 100, asis = 10 * digit (str, 9) + digit (str, 10)
 		
