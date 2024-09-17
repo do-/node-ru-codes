@@ -1,4 +1,4 @@
-const {isOGRN13} = require ('..')
+const {isOGRN13, randomOGRN13} = require ('..')
 
 test ('basic', () => {
 
@@ -7,5 +7,6 @@ test ('basic', () => {
 	expect (() => isOGRN13 ('1027700280938')).toThrow ()
 	
 	expect (isOGRN13 ('1027700280937')).toBeUndefined ()
+	expect (isOGRN13 (randomOGRN13 ())).toBeUndefined ()
 
 })
