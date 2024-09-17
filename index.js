@@ -90,13 +90,12 @@ module.exports = {
 
 	randomSNILS: (options = {}) => {
 
-		let result = randomString (9)
+		const 
+			length = COEF_SNILS.length - 2, 
+			no = randomString (length), 
+			result = no + scalarProduct (COEF_SNILS.slice (0, length), no) % 101 % 100
 
-		result += scalarProduct (COEF_SNILS.slice (0, 9), result) % 101 % 100
-
-		if (options.format) result = result.slice (0, 3) + '-' + result.slice (3, 6) + '-' + result.slice (6, 9) + ' ' + result.slice (9)
-
-		return result
+		return !options.format ? result : result.slice (0, 3) + '-' + result.slice (3, 6) + '-' + result.slice (6, 9) + ' ' + result.slice (9)
 
 	},
 
@@ -160,6 +159,12 @@ module.exports = {
 		
 		if (tobe !== asis) die ('Wrong checksum', {code: 'checksum', tobe, asis})
 		
+	},
+
+	randomKPP: () => {
+
+		return randomString (COEF_KPP.length)
+
 	},
 
 	isKPP: str => {
