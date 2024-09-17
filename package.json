@@ -10,7 +10,8 @@
   },
   "jest": {
 	"collectCoverageFrom": [
-		"index.js"
+		"index.js",
+    "lib/**/*.js"
 	],
 	"coverageReporters": ["clover", "json", "lcov", "text", "json-summary"],
   	"verbose": false,
