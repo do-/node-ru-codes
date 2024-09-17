@@ -92,8 +92,9 @@ module.exports = {
 
 		const 
 			length = COEF_SNILS.length - 2, 
-			no = randomString (length), 
-			result = no + scalarProduct (COEF_SNILS.slice (0, length), no) % 101 % 100
+			no = randomString (length),
+			sum = scalarProduct (COEF_SNILS.slice (0, length), no) % 101 % 100
+			result = sum < 10 ? no + '0' + sum : no + sum
 
 		return !options.format ? result : result.slice (0, 3) + '-' + result.slice (3, 6) + '-' + result.slice (6, 9) + ' ' + result.slice (9)
 
@@ -123,6 +124,16 @@ module.exports = {
 		
 		if (tobe !== asis) die ('Wrong checksum', {code: 'checksum', tobe, asis})
 		
+	},
+
+	randomINN10: () => {
+
+		const
+			length = COEF_INN_10.length - 1,
+			no = randomString (length)
+
+		return no + scalarProduct (COEF_INN_10.slice (0, length), no) % 11 % 10
+
 	},
 
 	isINN12: str => {
