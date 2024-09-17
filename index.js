@@ -174,6 +174,16 @@ module.exports = {
 		
 	},
 
+	randomOGRN15: () => {
+
+		const
+			length = COEF_OGRN_15.length - 1,
+			no = randomString (length)
+
+		return no + scalarProduct (COEF_OGRN_15.slice (0, length), no) % 11 % 10
+
+	},
+
 	isOGRN15: str => {
 	
 		const tobe = scalarProduct (COEF_OGRN_15, str) % 11 % 10, asis = digit (str, 14)
