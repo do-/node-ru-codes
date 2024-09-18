@@ -18,7 +18,7 @@ module.exports = {
 	isINN10     : str     => new INN_10 ().verify (str),
 	randomINN10 : ()      => new INN_10 ().random (),
 	
-	isKPP       : str     => new KPP ().process (str),
+	isKPP       : str     => new KPP ().verify (str),
 	randomKPP   : ()      => new KPP ().randomValue (),
 
 	isINN12: str => {
