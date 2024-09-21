@@ -2,6 +2,7 @@ const Check = require ('./lib/Check')
 const {OGRN_13, OGRN_15} = require ('./lib/Horner')
 const {INN_10, INN_12_2, INN_12_1} = require ('./lib/INN')
 const SNILS = require ('./lib/SNILS')
+const {OKPO_8} = require ('./lib/OKPO')
 class KPP extends Check {constructor () {super (9)}}
 
 module.exports = {
@@ -20,6 +21,9 @@ module.exports = {
 	
 	isKPP       : str     => new KPP ().verify (str),
 	randomKPP   : ()      => new KPP ().randomValue (),
+
+	isOKPO8    : str      => new OKPO_8 ().verify (str),
+	randomOKPO8: ()       => new OKPO_8 ().random (),
 
 	isINN12: str => {
 		new INN_12_1 ().verify (str.slice (0, 11))
