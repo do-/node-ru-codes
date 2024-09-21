@@ -9,6 +9,6 @@ test ('basic', () => {
 	
 	expect (isKPP ('771401001')).toBeUndefined ()
 
-	expect (isKPP (randomKPP ())).toBeUndefined ()
+	for (let i = 0; i < 1000; i ++) expect (isKPP (randomKPP ())).toBeUndefined ()
 
 })

@@ -6,6 +6,6 @@ test ('basic', () => {
 	expect (() => isINN12 ('635277570473')).toThrow ()
 	
 	expect (isINN12 ('635277570478')).toBeUndefined ()
-	expect (isINN12 (randomINN12 ())).toBeUndefined ()
+	for (let i = 0; i < 1000; i ++) expect (isINN12 (randomINN12 ())).toBeUndefined ()
 
 })

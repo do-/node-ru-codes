@@ -7,6 +7,6 @@ test ('basic', () => {
 	expect (() => isOGRN13 ('1027700280938')).toThrow ()
 	
 	expect (isOGRN13 ('1027700280937')).toBeUndefined ()
-	expect (isOGRN13 (randomOGRN13 ())).toBeUndefined ()
+	for (let i = 0; i < 1000; i ++) expect (isOGRN13 (randomOGRN13 ())).toBeUndefined ()
 
 })
