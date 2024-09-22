@@ -1,7 +1,7 @@
 {
   "name": "ru-codes",
   "version": "1.0.5",
-  "description": "ИНН, КПП и т. п.",
+  "description": "Проверка и генерация ИНН, КПП и т. п.",
   "main": "index.js",
   "files": ["/lib", "/badges"],
   "scripts": {
