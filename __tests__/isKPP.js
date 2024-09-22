@@ -12,5 +12,4 @@ test ('basic', () => {
 	expect (isKPP (randomKPP ())).toBeUndefined ()
 	expect (randomKPP ({pre: ['77', '50']})).toMatch (/^(50|77)/)
 
-
 })
