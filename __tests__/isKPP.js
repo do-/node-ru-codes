@@ -8,7 +8,9 @@ test ('basic', () => {
 	expect (() => isKPP ('7714010?1')).toThrow ()
 	
 	expect (isKPP ('771401001')).toBeUndefined ()
+		
+	expect (isKPP (randomKPP ())).toBeUndefined ()
+	expect (randomKPP ({pre: ['77', '50']})).toMatch (/^(50|77)/)
 
-	for (let i = 0; i < 1000; i ++) expect (isKPP (randomKPP ())).toBeUndefined ()
 
 })

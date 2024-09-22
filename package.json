@@ -1,6 +1,6 @@
 {
   "name": "ru-codes",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "ИНН, КПП и т. п.",
   "main": "index.js",
   "files": ["/lib", "/badges"],
