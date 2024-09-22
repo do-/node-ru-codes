@@ -3,7 +3,7 @@ const {OGRN_13, OGRN_15} = require ('./lib/Horner')
 const {INN_10, INN_12_2, INN_12_1} = require ('./lib/INN')
 const SNILS = require ('./lib/SNILS')
 const BankAcct = require ('./lib/BankAcct')
-const Luhn = require ('./lib/Luhn')
+const BankCard = require ('./lib/BankCard')
 const {OKPO_8, OKPO_10} = require ('./lib/OKPO')
 class KPP extends Check {constructor () {super (9)}}
 
@@ -36,9 +36,10 @@ module.exports = {
 	},
 	randomINN12: () => new INN_12_2 ().appendCheckSum (new INN_12_1 ().random ()),
 
-	isBankAcct : (str, bic)    => new BankAcct ().verify (str, bic),
-	randomBankAcct: (bic, opt) => new BankAcct ().random (bic, opt),
+	isBankAcct     : (str, bic) => new BankAcct ().verify (str, bic),
+	randomBankAcct : (bic, opt) => new BankAcct ().random (bic, opt),
 
-	isBankCard : str  => new Luhn (16).verify (str)
+	isBankCard     : str        => new BankCard ().verify (str),
+	randomBankCard : opt        => new BankCard ().random (opt),
 
 }
