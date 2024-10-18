@@ -34,7 +34,7 @@ module.exports = {
 		new INN_12_1 ().verify (str.slice (0, 11))
 		new INN_12_2 ().verify (str)
 	},
-	randomINN12: () => new INN_12_2 ().appendCheckSum (new INN_12_1 ().random ()),
+	randomINN12: opt => new INN_12_2 ().appendCheckSum (new INN_12_1 ().random (opt)),
 
 	isBankAcct     : (str, bic) => new BankAcct ().verify (str, bic),
 	randomBankAcct : (bic, opt) => new BankAcct ().random (bic, opt),
