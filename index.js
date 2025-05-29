@@ -4,6 +4,7 @@ const {INN_10, INN_12_2, INN_12_1} = require ('./lib/INN')
 const SNILS = require ('./lib/SNILS')
 const BankAcct = require ('./lib/BankAcct')
 const BankCard = require ('./lib/BankCard')
+const CadNum = require ('./lib/CadNum'), cadNum = new CadNum ()
 const {OKPO_8, OKPO_10} = require ('./lib/OKPO')
 class KPP extends Check {constructor () {super (9)}}
 
@@ -41,5 +42,8 @@ module.exports = {
 
 	isBankCard     : str        => new BankCard ().verify (str),
 	randomBankCard : opt        => new BankCard ().random (opt),
+
+	isCadNum       : str        => cadNum.verify (str),
+	randomCadNum   : opt        => cadNum.random (opt),
 
 }
