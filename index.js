@@ -18,41 +18,46 @@ const raise = (a) => {
 
 module.exports = {
 
-	isSNILS     : str     => new SNILS ().verify (str),
+	isntSNILS   : str     => new SNILS ().verify (str),
 	randomSNILS : opt     => new SNILS ().random (opt),
 
-	isOGRN15    : str     => new OGRN_15 ().verify (str),
+	isntOGRN15  : str     => new OGRN_15 ().verify (str),
 	randomOGRN15: opt     => new OGRN_15 ().random (opt),
 
-	isOGRN13    : str     => new OGRN_13 ().verify (str),
+	isntOGRN13  : str     => new OGRN_13 ().verify (str),
 	randomOGRN13: opt     => new OGRN_13 ().random (opt),
 
-	isINN10     : str     => new INN_10 ().verify (str),
+	isntINN10   : str     => new INN_10 ().verify (str),
 	randomINN10 : opt     => new INN_10 ().random (opt),
 	
-	isKPP       : str     => new KPP ().verify (str),
+	isntKPP     : str     => new KPP ().verify (str),
 	randomKPP   : opt     => new KPP ().randomValue (opt),
 
-	isOKPO8    : str      => new OKPO_8 ().verify (str),
+	isntOKPO8  : str      => new OKPO_8 ().verify (str),
 	randomOKPO8: opt      => new OKPO_8 ().random (opt),
 
-	isOKPO10    : str     => new OKPO_10 ().verify (str),
+	isntOKPO10  : str     => new OKPO_10 ().verify (str),
 	randomOKPO10: opt     => new OKPO_10 ().random (opt),
 
-	isINN12: str => {
+	isntINN12: str => (
 		new INN_12_1 ().verify (str.slice (0, 11))
-		new INN_12_2 ().verify (str)
-	},
+		?? new INN_12_2 ().verify (str)
+	),
 	randomINN12: opt => new INN_12_2 ().appendCheckSum (new INN_12_1 ().random (opt)),
 
-	isBankAcct     : (str, bic) => new BankAcct ().verify (str, bic),
+	isntBankAcct   : (str, bic) => new BankAcct ().verify (str, bic),
 	randomBankAcct : (bic, opt) => new BankAcct ().random (bic, opt),
 
-	isBankCard     : str        => new BankCard ().verify (str),
+	isntBankCard   : str        => new BankCard ().verify (str),
 	randomBankCard : opt        => new BankCard ().random (opt),
 
 	isntCadNum     : str        => cadNum.verify (str),
-	isCadNum       : str        => raise (cadNum.verify (str)),
 	randomCadNum   : opt        => cadNum.random (opt),
+
+}
+
+for (const k in module.exports) if (k.startsWith ('isnt')) {
+
+	module.exports ['is' + k.substring (4)] = (x, y) => raise (module.exports [k] (x, y))
 
 }
