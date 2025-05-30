@@ -26,7 +26,7 @@ test ('basic', () => {
 		'47:14:120300:814',
 		'47:14:1203001:814',
 	]) {
-		
+
 		expect (isntCadNum (v)).toBeFalsy ()
 		expect (isCadNum (v)).toBeUndefined ()
 
@@ -38,7 +38,7 @@ test ('basic', () => {
 
 			for (let i = 0; i < 10; i ++) {
 
-				const v = randomCadNum (pre || length ? {pre, length} : undefined)
+				const v = randomCadNum (pre || length ? {pre: pre ? [pre] : pre, length} : undefined)
 
 				expect (v).toMatch (RE)
 				if (pre && length > pre.length + 2) {
