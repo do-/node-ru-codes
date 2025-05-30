@@ -8,6 +8,14 @@ const CadNum = require ('./lib/CadNum'), cadNum = new CadNum ()
 const {OKPO_8, OKPO_10} = require ('./lib/OKPO')
 class KPP extends Check {constructor () {super (9)}}
 
+const raise = (a) => {
+	if (!a) return
+	const [message, o] = a
+	const err = new Error (message)
+	for (const k in o) err [k] = o [k]
+	throw err
+}
+
 module.exports = {
 
 	isSNILS     : str     => new SNILS ().verify (str),
@@ -43,7 +51,8 @@ module.exports = {
 	isBankCard     : str        => new BankCard ().verify (str),
 	randomBankCard : opt        => new BankCard ().random (opt),
 
-	isCadNum       : str        => cadNum.verify (str),
+	isntCadNum     : str        => cadNum.verify (str),
+	isCadNum       : str        => raise (cadNum.verify (str)),
 	randomCadNum   : opt        => cadNum.random (opt),
 
 }
